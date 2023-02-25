@@ -5,26 +5,9 @@ export const posts = () => {
 }
 
 export const post = ({ id }) => {
-  return db.post.findUnique({
-    where: { id },
-  })
+  return db.post.findUnique({ where: { id } })
 }
 
-export const createPost = ({ input }) => {
-  return db.post.create({
-    data: input,
-  })
-}
-
-export const updatePost = ({ id, input }) => {
-  return db.post.update({
-    data: input,
-    where: { id },
-  })
-}
-
-export const deletePost = ({ id }) => {
-  return db.post.delete({
-    where: { id },
-  })
+export const Post = {
+  user: (_obj, { root }) => db.user.findFirst({ where: { id: root.userId } }),
 }
